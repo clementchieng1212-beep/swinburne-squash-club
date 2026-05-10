@@ -2,194 +2,688 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Swinburne Squash Club</title>
-
   <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
     }
 
-    body{
-      background:#0d0d0d;
-      color:white;
-      line-height:1.6;
+    body {
+      background: #080808;
+      color: #ffffff;
+      line-height: 1.6;
     }
 
-    nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px 10%;
-      background:black;
-      position:sticky;
-      top:0;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    nav h1{
-      color:#00ff88;
+    header {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.82)),
+        url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;
     }
 
-    nav ul{
-      display:flex;
-      list-style:none;
-      gap:20px;
+    nav {
+      width: 100%;
+      padding: 18px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.75);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    nav a{
-      color:white;
-      text-decoration:none;
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #00ff88;
+      letter-spacing: 0.5px;
     }
 
-    .hero{
-      height:90vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-      url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?q=80&w=1974&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
-      padding:20px;
+    nav ul {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      font-size: 14px;
     }
 
-    .hero-content h2{
-      font-size:60px;
-      margin-bottom:20px;
+    nav ul li a:hover {
+      color: #00ff88;
     }
 
-    .hero-content p{
-      font-size:20px;
-      margin-bottom:30px;
+    .hero {
+      min-height: calc(100vh - 70px);
+      display: flex;
+      align-items: center;
+      padding: 70px 8%;
     }
 
-    .btn{
-      background:#00ff88;
-      color:black;
-      padding:15px 30px;
-      border:none;
-      border-radius:30px;
-      text-decoration:none;
-      font-weight:bold;
+    .hero-content {
+      max-width: 760px;
     }
 
-    section{
-      padding:80px 10%;
+    .tag {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(0,255,136,0.45);
+      border-radius: 999px;
+      color: #00ff88;
+      background: rgba(0,255,136,0.08);
+      margin-bottom: 20px;
+      font-size: 14px;
     }
 
-    .about, .schedule, .contact{
-      text-align:center;
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 1.05;
+      margin-bottom: 22px;
+      text-transform: uppercase;
     }
 
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:20px;
-      margin-top:40px;
+    .hero p {
+      color: #dddddd;
+      max-width: 650px;
+      font-size: 18px;
+      margin-bottom: 30px;
     }
 
-    .card{
-      background:#1a1a1a;
-      padding:30px;
-      border-radius:15px;
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
-    footer{
-      text-align:center;
-      padding:30px;
-      background:black;
-      margin-top:50px;
+    .btn {
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      display: inline-block;
+      transition: 0.25s;
     }
 
-    @media(max-width:768px){
-      .hero-content h2{
-        font-size:40px;
+    .btn-primary {
+      background: #00ff88;
+      color: #000;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0,255,136,0.18);
+    }
+
+    section {
+      padding: 85px 8%;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 46px);
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: #bbbbbb;
+      max-width: 780px;
+      margin-bottom: 38px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #151515, #0f0f0f);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 26px;
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,255,136,0.4);
+    }
+
+    .card h3 {
+      color: #00ff88;
+      margin-bottom: 10px;
+    }
+
+    .card p, .card li {
+      color: #d2d2d2;
+      font-size: 15px;
+    }
+
+    .dashboard {
+      background: #0d0d0d;
+    }
+
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 24px;
+    }
+
+    .panel {
+      background: #121212;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 26px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 13px 14px;
+      margin: 8px 0 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.13);
+      background: #080808;
+      color: #fff;
+      outline: none;
+    }
+
+    label {
+      color: #cccccc;
+      font-size: 14px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .stat {
+      background: #181818;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat strong {
+      display: block;
+      color: #00ff88;
+      font-size: 28px;
+    }
+
+    .list-item {
+      padding: 14px;
+      border-radius: 14px;
+      background: #181818;
+      margin-bottom: 12px;
+      border-left: 4px solid #00ff88;
+      color: #dddddd;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      min-width: 620px;
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-align: left;
+      color: #dddddd;
+    }
+
+    th {
+      color: #00ff88;
+      background: #151515;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .gallery div {
+      height: 230px;
+      border-radius: 22px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    footer {
+      padding: 35px 8%;
+      background: #000;
+      text-align: center;
+      color: #aaaaaa;
+    }
+
+    .notice {
+      margin-top: 14px;
+      padding: 13px;
+      border-radius: 14px;
+      background: rgba(0,255,136,0.1);
+      color: #00ff88;
+      display: none;
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        flex-direction: column;
+        gap: 14px;
       }
 
-      nav{
-        flex-direction:column;
-        gap:15px;
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .dashboard-layout {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
-
 <body>
+  <header id="home">
+    <nav>
+      <div class="logo">Swinburne Squash Club</div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#dashboard">Club System</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
 
-  <nav>
-    <h1>Swinburne Squash Club</h1>
+    <div class="hero">
+      <div class="hero-content">
+        <span class="tag">Official Student Club Website</span>
+        <h1>Train Hard. Play Smart. Join Squash.</h1>
+        <p>
+          Welcome to Swinburne Squash Club — a student-led community for beginners,
+          casual players, and competitive squash lovers.
+        </p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="#dashboard">Join / Login</a>
+          <a class="btn btn-secondary" href="#schedule">View Training</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#schedule">Schedule</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <section id="about">
+    <h2 class="section-title">About the Club</h2>
+    <p class="section-subtitle">
+      Our club aims to create a friendly, active, and supportive environment where students can improve fitness,
+      learn squash skills, meet new friends, and participate in club events.
+    </p>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h2>WELCOME TO SWINBURNE SQUASH CLUB</h2>
-
-      <p>
-        Train. Compete. Improve. Join the growing squash community at Swinburne.
-      </p>
-
-      <a href="#contact" class="btn">Join Us</a>
+    <div class="grid">
+      <div class="card">
+        <h3>Beginner Friendly</h3>
+        <p>No experience needed. New players are welcome to join and learn step by step.</p>
+      </div>
+      <div class="card">
+        <h3>Training & Matches</h3>
+        <p>Members can join regular practice sessions, friendly matches, and internal tournaments.</p>
+      </div>
+      <div class="card">
+        <h3>Student Community</h3>
+        <p>Meet other students, build teamwork, and enjoy a healthy sports lifestyle on campus.</p>
+      </div>
     </div>
   </section>
 
-  <section id="about" class="about">
-    <h2>About Us</h2>
+  <section id="schedule">
+    <h2 class="section-title">Training Schedule</h2>
+    <p class="section-subtitle">Example schedule. You can change the time and venue later.</p>
 
-    <p style="margin-top:20px;">
-      Swinburne Squash Club is a student-led sports club focused on building
-      an active and supportive squash community for beginners and experienced players.
-    </p>
-  </section>
-
-  <section id="schedule" class="schedule">
-    <h2>Training Schedule</h2>
-
-    <div class="cards">
-
+    <div class="grid">
       <div class="card">
         <h3>Monday</h3>
-        <p>6:00 PM - 8:00 PM</p>
+        <p>6:00 PM – 8:00 PM</p>
         <p>Beginner Training</p>
       </div>
-
       <div class="card">
         <h3>Wednesday</h3>
-        <p>6:00 PM - 8:00 PM</p>
-        <p>Intermediate Training</p>
+        <p>6:00 PM – 8:00 PM</p>
+        <p>Intermediate Practice</p>
       </div>
-
       <div class="card">
         <h3>Saturday</h3>
-        <p>4:00 PM - 7:00 PM</p>
+        <p>4:00 PM – 7:00 PM</p>
         <p>Friendly Matches</p>
       </div>
-
     </div>
   </section>
 
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-
-    <p style="margin-top:20px;">
-      Instagram: @swinburnesquashclub
+  <section id="dashboard" class="dashboard">
+    <h2 class="section-title">Club Management System</h2>
+    <p class="section-subtitle">
+      This is a front-end club system. It saves data in the browser using local storage, so it works without a paid server.
     </p>
 
-    <p>Email: swinburnesquashclub@gmail.com</p>
+    <div class="dashboard-layout">
+      <div class="panel">
+        <h3>Member Login / Registration</h3>
+        <label>Full Name</label>
+        <input id="memberName" type="text" placeholder="Example: Clement Chieng" />
+
+        <label>Student ID</label>
+        <input id="studentId" type="text" placeholder="Example: 104xxxxx" />
+
+        <label>Role</label>
+        <select id="memberRole">
+          <option>Member</option>
+          <option>Committee</option>
+          <option>Admin</option>
+        </select>
+
+        <button class="btn btn-primary" onclick="registerMember()">Register / Login</button>
+        <div id="loginNotice" class="notice">Member saved successfully!</div>
+      </div>
+
+      <div class="panel">
+        <h3>Admin Dashboard</h3>
+        <div class="mini-grid">
+          <div class="stat"><strong id="memberCount">0</strong>Members</div>
+          <div class="stat"><strong id="bookingCount">0</strong>Bookings</div>
+          <div class="stat"><strong id="attendanceCount">0</strong>Attendance</div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Student ID</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody id="memberTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <h2 class="section-title">Court Booking</h2>
+    <p class="section-subtitle">Members can make simple court booking requests here.</p>
+
+    <div class="dashboard-layout">
+      <div class="panel">
+        <label>Name</label>
+        <input id="bookingName" type="text" placeholder="Your name" />
+
+        <label>Date</label>
+        <input id="bookingDate" type="date" />
+
+        <label>Time Slot</label>
+        <select id="bookingTime">
+          <option>4:00 PM – 5:00 PM</option>
+          <option>5:00 PM – 6:00 PM</option>
+          <option>6:00 PM – 7:00 PM</option>
+          <option>7:00 PM – 8:00 PM</option>
+        </select>
+
+        <button class="btn btn-primary" onclick="addBooking()">Book Court</button>
+      </div>
+
+      <div class="panel">
+        <h3>Booking List</h3>
+        <div id="bookingList"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="attendance">
+    <h2 class="section-title">Attendance Tracking</h2>
+    <p class="section-subtitle">Use this to record members who attended training.</p>
+
+    <div class="dashboard-layout">
+      <div class="panel">
+        <label>Member Name</label>
+        <input id="attendanceName" type="text" placeholder="Member name" />
+        <button class="btn btn-primary" onclick="markAttendance()">Mark Present</button>
+      </div>
+
+      <div class="panel">
+        <h3>Attendance Records</h3>
+        <div id="attendanceList"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="events">
+    <h2 class="section-title">Events & Announcements</h2>
+    <p class="section-subtitle">Add club events, tournaments, or announcements.</p>
+
+    <div class="dashboard-layout">
+      <div class="panel">
+        <label>Event Title</label>
+        <input id="eventTitle" type="text" placeholder="Example: Beginner Friendly Match" />
+
+        <label>Event Description</label>
+        <textarea id="eventDesc" rows="4" placeholder="Write event details here"></textarea>
+
+        <button class="btn btn-primary" onclick="addEvent()">Add Event</button>
+      </div>
+
+      <div class="panel">
+        <h3>Upcoming Events</h3>
+        <div id="eventList"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="committee">
+    <h2 class="section-title">Committee Team</h2>
+    <p class="section-subtitle">You can edit these names later based on your real committee members.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>President</h3>
+        <p>Responsible for leading the club and coordinating main activities.</p>
+      </div>
+      <div class="card">
+        <h3>Vice President</h3>
+        <p>Supports the president and assists with club planning.</p>
+      </div>
+      <div class="card">
+        <h3>Treasurer</h3>
+        <p>Manages club budget, fees, and financial records.</p>
+      </div>
+      <div class="card">
+        <h3>Secretary</h3>
+        <p>Handles documentation, meeting notes, and member communication.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2 class="section-title">Gallery</h2>
+    <p class="section-subtitle">Sample sports images. You can replace them with real club photos later.</p>
+
+    <div class="gallery">
+      <div style="background-image:url('https://images.unsplash.com/photo-1554068865-24cecd4e34b8?q=80&w=1200&auto=format&fit=crop')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?q=80&w=1200&auto=format&fit=crop')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=1200&auto=format&fit=crop')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop')"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact & Join Us</h2>
+    <p class="section-subtitle">Interested in joining? Contact us through email, Instagram, or WhatsApp.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Email</h3>
+        <p>swinburnesquashclub@gmail.com</p>
+      </div>
+      <div class="card">
+        <h3>Instagram</h3>
+        <p>@swinburnesquashclub</p>
+      </div>
+      <div class="card">
+        <h3>WhatsApp</h3>
+        <p>Replace this with your real club contact number.</p>
+      </div>
+    </div>
   </section>
 
   <footer>
-    <p>© 2026 Swinburne Squash Club</p>
+    <p>© 2026 Swinburne Squash Club. Built for student club management.</p>
   </footer>
 
+  <script>
+    let members = JSON.parse(localStorage.getItem('members')) || [];
+    let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+    let attendance = JSON.parse(localStorage.getItem('attendance')) || [];
+    let events = JSON.parse(localStorage.getItem('events')) || [];
+
+    function saveData() {
+      localStorage.setItem('members', JSON.stringify(members));
+      localStorage.setItem('bookings', JSON.stringify(bookings));
+      localStorage.setItem('attendance', JSON.stringify(attendance));
+      localStorage.setItem('events', JSON.stringify(events));
+    }
+
+    function registerMember() {
+      const name = document.getElementById('memberName').value.trim();
+      const id = document.getElementById('studentId').value.trim();
+      const role = document.getElementById('memberRole').value;
+
+      if (!name || !id) {
+        alert('Please enter your name and student ID.');
+        return;
+      }
+
+      members.push({ name, id, role });
+      saveData();
+      renderAll();
+
+      document.getElementById('memberName').value = '';
+      document.getElementById('studentId').value = '';
+      document.getElementById('loginNotice').style.display = 'block';
+
+      setTimeout(() => {
+        document.getElementById('loginNotice').style.display = 'none';
+      }, 2500);
+    }
+
+    function addBooking() {
+      const name = document.getElementById('bookingName').value.trim();
+      const date = document.getElementById('bookingDate').value;
+      const time = document.getElementById('bookingTime').value;
+
+      if (!name || !date) {
+        alert('Please enter your name and booking date.');
+        return;
+      }
+
+      bookings.push({ name, date, time });
+      saveData();
+      renderAll();
+      document.getElementById('bookingName').value = '';
+      document.getElementById('bookingDate').value = '';
+    }
+
+    function markAttendance() {
+      const name = document.getElementById('attendanceName').value.trim();
+
+      if (!name) {
+        alert('Please enter member name.');
+        return;
+      }
+
+      const today = new Date().toLocaleDateString();
+      attendance.push({ name, date: today });
+      saveData();
+      renderAll();
+      document.getElementById('attendanceName').value = '';
+    }
+
+    function addEvent() {
+      const title = document.getElementById('eventTitle').value.trim();
+      const desc = document.getElementById('eventDesc').value.trim();
+
+      if (!title || !desc) {
+        alert('Please enter event title and description.');
+        return;
+      }
+
+      events.push({ title, desc });
+      saveData();
+      renderAll();
+      document.getElementById('eventTitle').value = '';
+      document.getElementById('eventDesc').value = '';
+    }
+
+    function renderAll() {
+      document.getElementById('memberCount').textContent = members.length;
+      document.getElementById('bookingCount').textContent = bookings.length;
+      document.getElementById('attendanceCount').textContent = attendance.length;
+
+      document.getElementById('memberTable').innerHTML = members.map(member => `
+        <tr>
+          <td>${member.name}</td>
+          <td>${member.id}</td>
+          <td>${member.role}</td>
+        </tr>
+      `).join('');
+
+      document.getElementById('bookingList').innerHTML = bookings.length ? bookings.map(booking => `
+        <div class="list-item">
+          <strong>${booking.name}</strong><br>
+          ${booking.date} | ${booking.time}
+        </div>
+      `).join('') : '<p style="color:#aaa;">No bookings yet.</p>';
+
+      document.getElementById('attendanceList').innerHTML = attendance.length ? attendance.map(record => `
+        <div class="list-item">
+          <strong>${record.name}</strong><br>
+          Present on ${record.date}
+        </div>
+      `).join('') : '<p style="color:#aaa;">No attendance records yet.</p>';
+
+      document.getElementById('eventList').innerHTML = events.length ? events.map(event => `
+        <div class="list-item">
+          <strong>${event.title}</strong><br>
+          ${event.desc}
+        </div>
+      `).join('') : '<p style="color:#aaa;">No events added yet.</p>';
+    }
+
+    renderAll();
+  </script>
 </body>
 </html>
+
